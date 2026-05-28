@@ -20,10 +20,11 @@ def admin():
     title = "Admin Login"
     if request.method == "POST":
         session["admin_id"] = 1
-    return render_template("admin.html", title=title)
+    return render_template("pages/admin/admin.html", title=title)
 
 
 @app.route("/dashboard")
 @login_required
 def dashboard():
     title = "Admin Dashboard"
+    return render_template("pages/admin/dashboard.html", title = title)
