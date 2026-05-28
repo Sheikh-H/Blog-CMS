@@ -9,6 +9,7 @@ from helpers.auth import login_required
 app = Flask(__name__)
 
 
+
 @app.route("/")
 def home():
     title = "Roadmap.sh Blog"
