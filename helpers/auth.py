@@ -1,6 +1,8 @@
 from functools import wraps
-from flask import session, redirect, url_for
-import werkzeug
+from flask import session, redirect, url_for, current_app
+from werkzeug.security import generate_password_hash, check_password_hash
+import json
+import os
 
 
 def login_required(f):
@@ -9,12 +11,41 @@ def login_required(f):
         if "admin_id" not in session:
             return redirect(url_for("admin"))
         return f(*args, **kwargs)
-
     return decorated_function
 
 
 def login_function(username, password):
-    if username == "sheikh_hussain" and password == "Password123":
-        return True
+    if not os.path.exists("../instance/admin.json"):
+        return "Please create login details first", 400
     else:
-        return False
+        with open("../instance/admin.json", "r") as f:
+            user = json.load(f)
+        if not user["username"] == username:
+            return "Username incorrect!", 400
+        try:
+            check_password_hash(user["password"], password)
+            return True
+        except:
+            return "Password Incorrect!", 400
+
+
+def register_user(username, password):
+    password = generate_password_hash(password)
+    user = {"username": username, "password": password}
+    if not os.path.exists("../instance/admin.json"):
+        with open("../instance/admin.json", "w") as f:
+            json.dump([], f)
+        with open("../instance/admin.json", "r") as f:
+            data = json.load(f)
+            data.append(user)
+        with open("../instance/admin.json", "w") as f:
+            json.dump(data, f, indent=2)
+    else:
+        with open("../instance/admin.json", "w") as f:
+            data = json.load(f)
+            data.append(user)
+            json.dump(data, f, indent=2)
+
+
+# To register a user please use the following function and run python file in terminal:
+# register_user("Sheikh", "TempPassword123")

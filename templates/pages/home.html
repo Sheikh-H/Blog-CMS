@@ -1,5 +1,17 @@
 {% extends 'layout.html' %} {% block content %}
-<div>
+<div class="flex flex-col w-full justify-center border">
   <h1>Welcome to my blog</h1>
+  <div class="flex gap-5 w-full" id="posts-grid">
+    <div class="border flex flex-col h-100 w-100">
+      <p>image</p>
+      <h3>Blog Title</h3>
+      <p>Blog description</p>
+    </div>
+    <div class="border flex flex-col h-100 w-100">
+      <p>image</p>
+      <h3>Blog Title</h3>
+      <p>Blog description</p>
+    </div>
+  </div>
 </div>
 {% endblock content %}

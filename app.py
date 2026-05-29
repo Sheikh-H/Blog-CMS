@@ -6,6 +6,7 @@ from datetime import datetime
 from helpers.auth import login_required, login_function
 import secrets
 from dotenv import load_dotenv
+from flask_session import Session
 
 load_dotenv()
 
@@ -23,13 +24,17 @@ def home():
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
+    if session.get("admin_id"):
+        return redirect(url_for("dashboard"))
     title = "Admin Login"
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
         login = login_function(username, password)
         if login == True:
             session["admin_id"] = 1
+            session.modified = True
+            session.permanent = True
             return redirect(url_for("dashboard"))
         else:
             return redirect(url_for("admin"))
