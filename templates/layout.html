@@ -6,9 +6,9 @@
     <title>{{title}} | Sheikh Hussain</title>
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <header>{% include 'partials/header.html' %}</header>
+    <main>{% block content %} {% endblock %}</main>
+    <footer>{% include 'footer.html' %}</footer>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </body>
 </html>
