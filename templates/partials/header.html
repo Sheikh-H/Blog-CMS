@@ -2,10 +2,12 @@
   <h1>Blog Website</h1>
   <nav>
     <ul class="flex gap-2">
+      {% if session.get('admin_id') %}
+      <li><a href="{{url_for('home')}}">Posts</a></li>
+      <li><a href="{{url_for('logout')}}">logout</a></li>
+      {% else %}
       <li><a href="{{url_for('home')}}">Posts</a></li>
       <li><a href="{{url_for('admin')}}">Login</a></li>
-      {% if session.get('admin_id') %}
-      <li><a href="{{url_for('logout')}}">logout</a></li>
       {% endif %}
     </ul>
   </nav>

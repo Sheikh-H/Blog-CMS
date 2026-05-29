@@ -26,7 +26,6 @@ def home():
 def admin():
     if session.get("admin_id"):
         return redirect(url_for("dashboard"))
-
     title = "Admin Login"
     if request.method == "POST":
         username = request.form.get("username").strip()
@@ -40,7 +39,6 @@ def admin():
             return redirect(url_for("dashboard"))
         else:
             return "Username or Password Incorrect!", 400
-
     return render_template("pages/admin/admin.html", title=title)
 
 

@@ -1,8 +1,14 @@
 from functools import wraps
-from flask import session, redirect, url_for, current_app
+from flask import session, redirect, url_for
+from pathlib import Path
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
 import os
+
+base_dir = Path(__file__).resolve().parent.parent
+admin_path = base_dir / "instance" / "admin.json"
+
+print(admin_path)
 
 
 def login_required(f):
@@ -11,14 +17,15 @@ def login_required(f):
         if "admin_id" not in session:
             return redirect(url_for("admin"))
         return f(*args, **kwargs)
+
     return decorated_function
 
 
 def login_function(username, password):
-    if not os.path.exists("instance/admin.json"):
+    if not os.path.exists(admin_path):
         return "Please create login details first", 400
     else:
-        with open("instance/admin.json", "r") as f:
+        with open(admin_path, "r") as f:
             user = json.load(f)
         if not user[0]["username"] == username:
             return False
@@ -30,22 +37,21 @@ def login_function(username, password):
 
 
 def register_user(username, password):
-    password = generate_password_hash(password)
-    user = {"username": username, "password": password}
-    if not os.path.exists("../instance/admin.json"):
-        with open("../instance/admin.json", "w") as f:
+    user = {"username": username, "password": generate_password_hash(password)}
+    if not os.path.exists(admin_path):
+        with open(admin_path, "w") as f:
             json.dump([], f)
-        with open("../instance/admin.json", "r") as f:
+        with open(admin_path, "r") as f:
             data = json.load(f)
             data.append(user)
-        with open("../instance/admin.json", "w") as f:
+        with open(admin_path, "w") as f:
             json.dump(data, f, indent=2)
     else:
-        with open("../instance/admin.json", "w") as f:
+        with open(admin_path, "w") as f:
             data = json.load(f)
             data.append(user)
             json.dump(data, f, indent=2)
 
 
 # To register a user please use the following function and run python file in terminal:
-# register_user("Sheikh", "TempPassword123")
+# register_user("sheikh", "password123")
