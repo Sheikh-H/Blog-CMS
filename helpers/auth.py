@@ -15,18 +15,18 @@ def login_required(f):
 
 
 def login_function(username, password):
-    if not os.path.exists("../instance/admin.json"):
+    if not os.path.exists("instance/admin.json"):
         return "Please create login details first", 400
     else:
-        with open("../instance/admin.json", "r") as f:
+        with open("instance/admin.json", "r") as f:
             user = json.load(f)
-        if not user["username"] == username:
-            return "Username incorrect!", 400
+        if not user[0]["username"] == username:
+            return False
         try:
-            check_password_hash(user["password"], password)
+            check_password_hash(user[0]["password"], password)
             return True
         except:
-            return "Password Incorrect!", 400
+            return False
 
 
 def register_user(username, password):
