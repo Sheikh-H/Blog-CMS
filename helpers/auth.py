@@ -1,5 +1,6 @@
 from functools import wraps
 from flask import session, redirect, url_for
+import werkzeug
 
 
 def login_required(f):
@@ -10,3 +11,10 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
+
+def login_function(username, password):
+    if username == "sheikh_hussain" and password == "Password123":
+        return True
+    else:
+        return False
