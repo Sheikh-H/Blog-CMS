@@ -69,7 +69,6 @@ def update_post(id, time, title=None, description=None, content=None):
     if not os.path.exists(posts_file):
         with open(posts_file, "w") as f:
             json.dump([], f)
-
     with open(posts_file, "r") as f:
         data = json.load(f)
     for post in data:
