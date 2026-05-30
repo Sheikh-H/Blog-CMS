@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 from helpers.auth import login_required, login_function
 from helpers.posts import add_new_post, delete_post, update_post, load_posts
-import secrets
+import secrets  # used to make a secret token which the flask app uses for data retrieval
 from dotenv import load_dotenv
 from flask_session import Session
 
@@ -20,7 +20,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 @app.route("/")
 def home():
     title = "Roadmap.sh Blog"
-    return render_template("pages/home.html", title=title)
+    posts = load_posts()
+    return render_template("pages/home.html", title=title, posts=posts)
 
 
 @app.route("/admin", methods=["GET", "POST"])

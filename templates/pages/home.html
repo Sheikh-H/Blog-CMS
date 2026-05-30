@@ -2,16 +2,17 @@
 <div class="flex flex-col w-full justify-center border">
   <h1>Welcome to my blog</h1>
   <div class="flex gap-5 w-full" id="posts-grid">
+    {% if posts %} {% for post in posts %}
     <div class="border flex flex-col h-100 w-100">
-      <p>image</p>
-      <h3>Blog Title</h3>
-      <p>Blog description</p>
+      <h3>{{post.title}}</h3>
+      <p>{{post.description}}</p>
+      <button formaction="view_post" formmethod="post" value="post.id">
+        view post
+      </button>
     </div>
-    <div class="border flex flex-col h-100 w-100">
-      <p>image</p>
-      <h3>Blog Title</h3>
-      <p>Blog description</p>
-    </div>
+    {% endfor %} {% else %}
+    <p>No posts available!</p>
+    {% endif %}
   </div>
 </div>
 {% endblock content %}
