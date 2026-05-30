@@ -4,7 +4,7 @@ import sys
 import os
 from datetime import datetime
 from helpers.auth import login_required, login_function
-from helpers.posts import add_post, delete_post, update_post
+from helpers.posts import add_new_post, delete_post, update_post, load_posts
 import secrets
 from dotenv import load_dotenv
 from flask_session import Session
@@ -60,9 +60,9 @@ def add_post():
         description = request.form.get("description").strip()
         content = request.form.get("content").strip()
         try:
-            add_post(title, description, content)
-        except:
-            return "Unable to add post", 400
+            add_new_post(title, description, content)
+        except Exception as e:
+            return f"{e}", 400
         return redirect(url_for("dashboard"))
     return render_template("/pages/admin/add_post.html", title=title)
 
@@ -71,4 +71,5 @@ def add_post():
 @login_required
 def dashboard():
     title = "Admin Dashboard"
-    return render_template("pages/admin/dashboard.html", title=title)
+    posts = load_posts()
+    return render_template("pages/admin/dashboard.html", title=title, posts=posts)

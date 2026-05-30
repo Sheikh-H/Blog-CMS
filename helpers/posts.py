@@ -5,8 +5,17 @@ import json
 base_dir = Path(__file__).resolve().parent.parent
 posts_file = base_dir / "instance" / "posts.json"
 
+def load_posts():
+    if not os.path.exists(posts_file):
+        with open(posts_file, "w") as f:
+            json.dump([], f)
+            return None
+    else:
+        with open(posts_file, "r") as f:
+            data = json.load(f)
+            return data
 
-def add_post(title, description, content):
+def add_new_post(title, description, content):
     if not os.path.exists(posts_file):
         with open(posts_file, "w") as f:
             json.dump([], f)
@@ -16,7 +25,7 @@ def add_post(title, description, content):
     _id = max((post["id"] for post in data), default=0) + 1
     post = {
         "id": _id,
-        "title": title.title(),
+        "title": title,
         "description": description,
         "content": content,
     }
