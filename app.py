@@ -1,6 +1,4 @@
 from flask import render_template, redirect, url_for, Flask, session, request
-import werkzeug
-import sys
 import os
 from datetime import datetime
 from helpers.auth import login_required, login_function
@@ -60,8 +58,9 @@ def add_post():
         title = request.form.get("title").strip().title()
         description = request.form.get("description").strip()
         content = request.form.get("content").strip()
+        time = datetime.now().replace(microsecond=0)
         try:
-            add_new_post(title, description, content)
+            add_new_post(title, description, content, time)
         except Exception as e:
             return f"{e}", 400
         return redirect(url_for("dashboard"))

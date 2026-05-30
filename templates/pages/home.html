@@ -6,6 +6,11 @@
     <div class="border flex flex-col h-100 w-100">
       <h3>{{post.title}}</h3>
       <p>{{post.description}}</p>
+      {% if not post.updated %}
+      <p>Added: {{post.added}}</p>
+      {% else %}
+      <p>Updated: {{post.updated}}</p>
+      {% endif %}
       <button formaction="view_post" formmethod="post" value="post.id">
         view post
       </button>
