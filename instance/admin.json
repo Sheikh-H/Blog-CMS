@@ -1,6 +1,6 @@
 [
   {
-    "username": "sheikh",
-    "password": "scrypt:32768:8:1$dAdRN095CFIsL9yM$ccd335adcdfa019b8a4f7bd7ed762404908a6f18878335577c025b1c160aa092c5fc911f8ff1ad475bc8f2b88a00075b991dd67a4824a3594b37796dd02307fd"
+    "username": "admin",
+    "password": "scrypt:32768:8:1$QHHD22iwV2pZ6J8H$b86872fc70c398da934f5a64bde0dc86fc9a19329030c858682429b1be005e40374b3c9261bbe05644252b74596d45444dc7b6c4ca25d0be6f7293f866f29095"
   }
 ]

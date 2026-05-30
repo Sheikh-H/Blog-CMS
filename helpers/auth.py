@@ -45,11 +45,12 @@ def register_user(username, password):
         with open(admin_path, "w") as f:
             json.dump(data, f, indent=2)
     else:
-        with open(admin_path, "w") as f:
+        with open(admin_path, 'r') as f:
             data = json.load(f)
+        with open(admin_path, "w") as f:
             data.append(user)
             json.dump(data, f, indent=2)
 
 
 # To register a user please use the following function and run python file in terminal:
-# register_user("sheikh", "password123")
+register_user("admin", "password123")

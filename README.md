@@ -85,6 +85,20 @@ The system is built around Flask sessions, Werkzeug password hashing, and a cust
   </li>
 </ol>
 
+<h3>🔐 Admin Dashboard Access</h3>
+<p>
+To log in to the administrative control panel, you can use the default credentials provided below:
+</p>
+<ul>
+  <li><b>Username:</b> admin</li>
+  <li><b>Password:</b> password123</li>
+</ul>
+
+<p>
+Alternatively, you can generate your own unique administrator account by navigating to the <code>helpers/</code> directory and running the authentication script directly in your terminal:
+</p>
+<pre>python3 helpers/auth.py</pre>
+
 ---
 
 <h2>🔐 Authentication System (helpers/auth.py)</h2>
