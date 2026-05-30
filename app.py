@@ -4,6 +4,7 @@ import sys
 import os
 from datetime import datetime
 from helpers.auth import login_required, login_function
+from helpers.posts import add_post, delete_post, update_post
 import secrets
 from dotenv import load_dotenv
 from flask_session import Session
@@ -48,6 +49,22 @@ def logout():
     session.clear()
     session.modified = True
     return redirect(url_for("home"))
+
+
+@app.route("/add_post", methods=["POST", "GET"])
+@login_required
+def add_post():
+    title = "Add Post"
+    if request.method == "POST":
+        title = request.form.get("title").strip().title()
+        description = request.form.get("description").strip()
+        content = request.form.get("content").strip()
+        try:
+            add_post(title, description, content)
+        except:
+            return "Unable to add post", 400
+        return redirect(url_for("dashboard"))
+    return render_template("/pages/admin/add_post.html", title=title)
 
 
 @app.route("/dashboard")

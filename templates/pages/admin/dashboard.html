@@ -3,9 +3,22 @@
   <h1>Dashboard</h1>
   <nav>
     <ul class="flex gap-2">
-      <li>Add New Post</li>
-      <li>Update Post</li>
+      <li><a href="{{url_for('add_post')}}">Add New Post</a></li>
     </ul>
   </nav>
+</div>
+<div>
+  {% for post in posts %}
+  <div>
+    <form method="post">
+      <input type="hidden" name="id" value="{{post.id}}" />
+      <input type="text" name="title" id="title" />
+      <input type="text" name="description" id="description" />
+      <input type="text" name="content" id="content" />
+      <button formaction="/update_post" formmethod="post">update post</button>
+      <button formaction="/delete_post" formmethod="post">delete post</button>
+    </form>
+  </div>
+  {% endfor %}
 </div>
 {% endblock content %}
