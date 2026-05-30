@@ -5,6 +5,7 @@ import json
 base_dir = Path(__file__).resolve().parent.parent
 posts_file = base_dir / "instance" / "posts.json"
 
+
 def load_post(_id):
     if not os.path.exists(posts_file):
         with open(posts_file, "w") as f:
@@ -14,8 +15,9 @@ def load_post(_id):
         with open(posts_file, "r") as f:
             data = json.load(f)
     for post in data:
-        if post['id'] == _id:
+        if post["id"] == _id:
             return post
+
 
 def load_posts():
     if not os.path.exists(posts_file):
@@ -42,7 +44,7 @@ def add_new_post(title, description, content, time):
         "description": description,
         "content": content,
         "added": time,
-        "updated": None
+        "updated": None,
     }
     data.append(post)
     with open(posts_file, "w") as f:

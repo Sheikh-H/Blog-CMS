@@ -83,6 +83,20 @@ def delete_post(_id):
     return redirect(url_for("dashboard"))
 
 
+@app.route("/edit_post/post/<int:_id>", methods=["GET", "POST"])
+@login_required
+def edit_post(_id):
+    post = load_post(_id)
+    title = f"{post['title']}"
+    if request.method == "POST":
+        post_title = request.form.get("title")
+        description = request.form.get("description")
+        content = request.form.get("content")
+        update_post(_id, post_title, description, content)
+        return redirect(url_for("dashboard"))
+    return render_template("pages/admin/edit_post.html", title=title, post=post)
+
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
