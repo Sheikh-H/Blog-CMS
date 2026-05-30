@@ -10,7 +10,7 @@
 <h2>📘 Project Overview</h2>
 
 <p>
-<b>ForgeBlog CMS</b> is a custom-built Flask-based blog management system developed as part of a <b><a href="https://roadmap.sh/projects" target="_blank">roadmap.sh</a></b> project. It allows a single administrator to create, edit, update, and delete blog posts through a secure authentication system.
+<b>ForgeBlog CMS</b> is a custom-built Flask-based blog management system developed as part of a <b><a href="https://roadmap.sh/projects/personal-blog" target="_blank">roadmap.sh personal blog</a></b> project. It allows a single administrator to create, edit, update, and delete blog posts through a secure authentication system.
 </p>
 
 <p>
