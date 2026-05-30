@@ -1,19 +1,28 @@
 {% extends 'layout.html' %} {% block content %}
-<div class="flex flex-col w-full justify-center border">
+<div class="flex flex-col w-full justify-center items-center">
   <h1>Welcome to my blog</h1>
   <div class="flex gap-5 w-full" id="posts-grid">
     {% if posts %} {% for post in posts %}
-    <div class="border flex flex-col h-100 w-100">
-      <h3>{{post.title}}</h3>
-      <p>{{post.description}}</p>
-      {% if not post.updated %}
-      <p>Added: {{post.added}}</p>
-      {% else %}
-      <p>Updated: {{post.updated}}</p>
-      {% endif %}
-      <a href="{{ url_for('view_post', _id=post.id) }}"
-        >View Post</a
-      >
+    <div
+      class="border flex flex-col h-50 w-100 rounded-2xl p-2 justify-between items-center"
+    >
+      <h3 class="font-bold">{{post.title}}</h3>
+      <div class="w-full text-justify">
+        <p>{{post.description}}</p>
+      </div>
+
+      <div class="flex justify-between w-full items-center">
+        {% if not post.updated %}
+        <p>Added: {{post.added}}</p>
+        {% else %}
+        <p>Updated: {{post.updated}}</p>
+        {% endif %}
+        <a
+          href="{{ url_for('view_post', _id=post.id) }}"
+          class="border rounded-full p-2 text-center"
+          >View Post</a
+        >
+      </div>
     </div>
     {% endfor %} {% else %}
     <p>No posts available!</p>

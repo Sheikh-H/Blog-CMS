@@ -1,17 +1,35 @@
 {% extends 'layout.html' %} {% block content %}
-<div>
-  <form action="/edit_post/{{post.id}}" method="post">
-    <label for="title">Post title:</label>
-    <input type="text" name="title" id="title" value="{{post.title}}" />
-    <label for="description">Post Description:</label>
+<div class="w-full flex flex-col justify-center">
+  <h1 class="text-center font-bold">Update Post</h1>
+  <form
+    action="/edit_post/{{post.id}}"
+    method="post"
+    class="w-full flex flex-col"
+  >
+    <label for="title">Update title:</label>
+    <input
+      type="text"
+      name="title"
+      id="title"
+      value="{{post.title}}"
+      class="border rounded-xl p-1"
+    />
+    <label for="description">Post Description (107 characters):</label>
     <input
       type="text"
       name="description"
       id="description"
       value="{{post.description}}"
+      class="border rounded-xl p-1"
     />
     <label for="content">Post Content:</label>
-    <input type="text" name="content" id="content" value="{{post.content}}" />
+    <input
+      type="text"
+      name="content"
+      id="content"
+      value="{{post.content}}"
+      class="border p-1"
+    />
     <input type="hidden" name="post_id" value="{{post.id}}" />
     <input type="submit" />
   </form>

@@ -1,11 +1,6 @@
 {% extends 'layout.html' %} {% block content %}
 <div class="w-full text-center">
   <h1>Dashboard</h1>
-  <nav>
-    <ul class="flex gap-2">
-      <li><a href="{{url_for('add_post')}}">Add New Post</a></li>
-    </ul>
-  </nav>
 </div>
 <div class="flex gap-2">
   {% if posts %} {% for post in posts %}

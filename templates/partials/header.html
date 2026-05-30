@@ -3,7 +3,7 @@
   <nav>
     <ul class="flex gap-2">
       {% if session.get('admin_id') %}
-      <li><a href="{{url_for('home')}}">Posts</a></li>
+      <li><a href="{{url_for('add_post')}}">Add New Post</a></li>
       <li><a href="{{url_for('logout')}}">logout</a></li>
       {% else %}
       <li><a href="{{url_for('home')}}">Posts</a></li>
