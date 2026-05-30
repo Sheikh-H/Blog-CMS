@@ -14,8 +14,8 @@
       <input type="hidden" name="id" value="{{post.id}}" />
       <h1>Title: {{post.title}}</h1>
       <div class="flex flex-col gap-2">
-        <a href="{{url_for('edit_post', _id=post.id)}}">Update Post</a>
-        <a href="{{url_for('delete_post', _id=post.id)}}">Delete Post</a>
+        <a href="{{url_for('edit_posts', _id=post.id)}}">Update Post</a>
+        <a href="{{url_for('delete_posts', _id=post.id)}}">Delete Post</a>
       </div>
     </form>
   </div>

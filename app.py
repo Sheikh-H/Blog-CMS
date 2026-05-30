@@ -76,16 +76,14 @@ def add_post():
 
 @app.route("/delete_post/<int:_id>", methods=["GET", "POST"])
 @login_required
-def delete_post(_id):
-    post = load_post(_id)
-    title = f"{post.title} Deleted!"
+def delete_posts(_id):
     delete_post(_id)
     return redirect(url_for("dashboard"))
 
 
 @app.route("/edit_post/<int:_id>", methods=["GET", "POST"])
 @login_required
-def edit_post(_id):
+def edit_posts(_id):
     post = load_post(_id)
     title = f"{post['title']}"
     if request.method == "POST":

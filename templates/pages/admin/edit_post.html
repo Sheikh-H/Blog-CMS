@@ -1,6 +1,6 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
-  <form action="/edit_post" method="post">
+  <form action="/edit_post/{{post.id}}" method="post">
     <label for="title">Post title:</label>
     <input type="text" name="title" id="title" value="{{post.title}}" />
     <label for="description">Post Description:</label>
