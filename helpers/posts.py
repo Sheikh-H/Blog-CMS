@@ -65,7 +65,7 @@ def delete_post(id):
         json.dump(data, f, indent=2)
 
 
-def update_post(id, title=None, description=None, content=None):
+def update_post(id, title=None, description=None, content=None, time):
     if not os.path.exists(posts_file):
         with open(posts_file, "w") as f:
             json.dump([], f)
@@ -87,5 +87,6 @@ def update_post(id, title=None, description=None, content=None):
                 post["content"] = content
             else:
                 post["content"] = post["content"]
+            post['updated']
     with open(posts_file, "w") as f:
         json.dump(data, f, indent=2)

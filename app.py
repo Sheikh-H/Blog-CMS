@@ -90,7 +90,8 @@ def edit_posts(_id):
         post_title = request.form.get("title")
         description = request.form.get("description")
         content = request.form.get("content")
-        update_post(_id, post_title, description, content)
+        time = str(datetime.now().replace(microsecond=0))
+        update_post(_id, post_title, description, content, time)
         return redirect(url_for("dashboard"))
     return render_template("pages/admin/edit_post.html", title=title, post=post)
 
