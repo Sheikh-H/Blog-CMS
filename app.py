@@ -22,6 +22,13 @@ def home():
     return render_template("pages/home.html", title=title, posts=posts)
 
 
+@app.route("/posts/post/<int:_id>", methods=["GET"])
+def view_post(_id):
+    post = load_post(_id)
+    title = f"{post['title']}"
+    return render_template("pages/post.html", title=title, post=post)
+
+
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if session.get("admin_id"):
@@ -67,13 +74,6 @@ def add_post():
     return render_template("/pages/admin/add_post.html", title=title)
 
 
-@app.route("/posts/post/<int:_id>", methods=["GET"])
-def view_post(_id):
-    post = load_post(_id)
-    title = f"{post['title']}"
-    return render_template("pages/post.html", title=title, post=post)
-
-
 @app.route("/delete_post/<int:_id>", methods=["GET", "POST"])
 @login_required
 def delete_post(_id):
@@ -83,7 +83,7 @@ def delete_post(_id):
     return redirect(url_for("dashboard"))
 
 
-@app.route("/edit_post/post/<int:_id>", methods=["GET", "POST"])
+@app.route("/edit_post/<int:_id>", methods=["GET", "POST"])
 @login_required
 def edit_post(_id):
     post = load_post(_id)
