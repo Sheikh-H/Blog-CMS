@@ -12,11 +12,13 @@
   <div class="border rounded-2xl">
     <form method="post" class="flex flex-col">
       <input type="hidden" name="id" value="{{post.id}}" />
-      <input type="text" name="title" id="title" />
-      <input type="text" name="description" id="description" />
-      <input type="text" name="content" id="content" />
-      <button formaction="/update_post" formmethod="post">update post</button>
-      <button formaction="/delete_post" formmethod="post">delete post</button>
+      <h1>{{post.title}}</h1>
+      <button formaction="/update_post" formmethod="post" value="{{post.id}}">
+        update post
+      </button>
+      <button formaction="/delete_post" formmethod="post" value="{{post.id}}">
+        delete post
+      </button>
     </form>
   </div>
   {% endfor %} {% else %}

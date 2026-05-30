@@ -74,6 +74,15 @@ def view_post(_id):
     return render_template("pages/post.html", title=title, post=post)
 
 
+@app.route("/delete_post/<int:_id>", methods=["GET", "POST"])
+@login_required
+def delete_post(_id):
+    post = load_post(_id)
+    title = f"{post.title} Deleted!"
+    delete_post(_id)
+    return redirect(url_for("dashboard"))
+
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
