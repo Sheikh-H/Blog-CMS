@@ -8,8 +8,6 @@ import os
 base_dir = Path(__file__).resolve().parent.parent
 admin_path = base_dir / "instance" / "admin.json"
 
-print(admin_path)
-
 
 def login_required(f):
     @wraps(f)
