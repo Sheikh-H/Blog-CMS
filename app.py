@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Flask, session, request
 import os
 from datetime import datetime
 from helpers.auth import login_required, login_function
-from helpers.posts import add_new_post, delete_post, update_post, load_posts
+from helpers.posts import add_new_post, delete_post, update_post, load_posts, load_post
 import secrets  # used to make a secret token which the flask app uses for data retrieval
 from dotenv import load_dotenv
 from flask_session import Session
@@ -65,6 +65,13 @@ def add_post():
             return f"{e}", 400
         return redirect(url_for("dashboard"))
     return render_template("/pages/admin/add_post.html", title=title)
+
+
+@app.route("/posts/post/<int:_id>", methods=["GET"])
+def view_post(_id):
+    post = load_post(_id)
+    title = f"{post['title']}"
+    return render_template("pages/post.html", title=title, post=post)
 
 
 @app.route("/dashboard")

@@ -5,6 +5,17 @@ import json
 base_dir = Path(__file__).resolve().parent.parent
 posts_file = base_dir / "instance" / "posts.json"
 
+def load_post(_id):
+    if not os.path.exists(posts_file):
+        with open(posts_file, "w") as f:
+            json.dump([], f)
+            return None
+    else:
+        with open(posts_file, "r") as f:
+            data = json.load(f)
+    for post in data:
+        if post['id'] == _id:
+            return post
 
 def load_posts():
     if not os.path.exists(posts_file):

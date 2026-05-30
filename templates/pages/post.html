@@ -1,0 +1,16 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+  <h1>{{post.title}}</h1>
+  <h3>{{post.description}}</h3>
+</div>
+<div>
+  <p>{{post.content}}</p>
+</div>
+<div>
+  {% if post.updated %}
+  <p>updated: {{post.updated}}</p>
+  {% else %}
+  <p>added: {{post.added}}</p>
+  {% endif %}
+</div>
+{% endblock content %}

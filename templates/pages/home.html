@@ -11,9 +11,9 @@
       {% else %}
       <p>Updated: {{post.updated}}</p>
       {% endif %}
-      <button formaction="view_post" formmethod="post" value="post.id">
-        view post
-      </button>
+      <a href="{{ url_for('view_post', _id=post.id) }}"
+        >View Post</a
+      >
     </div>
     {% endfor %} {% else %}
     <p>No posts available!</p>
