@@ -58,7 +58,7 @@ def add_post():
         title = request.form.get("title").strip().title()
         description = request.form.get("description").strip()
         content = request.form.get("content").strip()
-        time = datetime.now().replace(microsecond=0)
+        time = str(datetime.now().replace(microsecond=0))
         try:
             add_new_post(title, description, content, time)
         except Exception as e:
