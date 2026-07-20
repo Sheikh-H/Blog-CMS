@@ -10,11 +10,11 @@
 <h2>📘 Project Overview</h2>
 
 <p>
-<b>ForgeBlog CMS</b> is a custom-built Flask-based blog management system developed as part of a <b><a href="https://roadmap.sh/projects/personal-blog" target="_blank">roadmap.sh personal blog</a></b> project. It allows a single administrator to create, edit, update, and delete blog posts through a secure authentication system.
+<b>Blog CMS</b> is a custom-built Flask-based blog management system developed as part of a <b><a href="https://roadmap.sh/projects/personal-blog" target="_blank">roadmap.sh personal blog</a></b> project. It allows a single administrator to create, edit, update, and delete blog posts through a secure authentication system.
 </p>
 
 <p>
-Unlike traditional database-driven CMS platforms, ForgeBlog stores all persistent data locally using structured JSON files inside the <code>instance/</code> directory. This keeps the project lightweight, transparent, and easy to inspect without requiring external database services.
+Unlike traditional database-driven CMS platforms, Blog CMS stores all persistent data locally using structured JSON files inside the <code>instance/</code> directory. This keeps the project lightweight, transparent, and easy to inspect without requiring external database services.
 </p>
 
 <p>
@@ -71,7 +71,7 @@ The system is built around Flask sessions, Werkzeug password hashing, and a cust
 <ol>
   <li>Ensure Python 3.8+ is installed.</li>
   <li>Clone the repository:
-    <pre>git clone https://github.com/sheikh-h/forgeblog-cms.git</pre>
+    <pre>git clone https://github.com/Sheikh-H/Blog-CMS.git</pre>
   </li>
   <li>Install dependencies:
     <pre>pip install -r requirements.txt</pre>
@@ -86,9 +86,11 @@ The system is built around Flask sessions, Werkzeug password hashing, and a cust
 </ol>
 
 <h3>🔐 Admin Dashboard Access</h3>
+
 <p>
 To log in to the administrative control panel, you can use the default credentials provided below:
 </p>
+
 <ul>
   <li><b>Username:</b> admin</li>
   <li><b>Password:</b> password123</li>
@@ -97,6 +99,7 @@ To log in to the administrative control panel, you can use the default credentia
 <p>
 Alternatively, you can generate your own unique administrator account by navigating to the <code>helpers/</code> directory and running the authentication script directly in your terminal:
 </p>
+
 <pre>python3 helpers/auth.py</pre>
 
 ---
@@ -104,6 +107,7 @@ Alternatively, you can generate your own unique administrator account by navigat
 <h2>🔐 Authentication System (helpers/auth.py)</h2>
 
 <h3>login_required(f)</h3>
+
 <p>
 A Flask decorator that protects routes by checking whether <code>admin_id</code> exists in the session. If not present, the user is redirected to the admin login page.
 </p>
@@ -113,6 +117,7 @@ A Flask decorator that protects routes by checking whether <code>admin_id</code>
 ---
 
 <h3>login_function(username, password)</h3>
+
 <p>
 Handles admin authentication by loading credentials from <code>admin.json</code> and verifying password hashes using Werkzeug’s <code>check_password_hash()</code>.
 </p>
@@ -124,6 +129,7 @@ Handles admin authentication by loading credentials from <code>admin.json</code>
 ---
 
 <h3>register_user(username, password)</h3>
+
 <p>
 Creates a new admin user and stores the credentials securely inside <code>admin.json</code>. Passwords are hashed before being written to disk.
 </p>
@@ -133,18 +139,23 @@ Creates a new admin user and stores the credentials securely inside <code>admin.
 <h2>📝 Blog Post System (helpers/posts.py)</h2>
 
 <h3>load_posts()</h3>
+
 <p>Loads all posts from <code>posts.json</code>. If the file does not exist, it is created and an empty list is returned.</p>
 
 <h3>load_post(_id)</h3>
+
 <p>Returns a single post matching the given ID or <code>None</code> if no match is found.</p>
 
 <h3>add_new_post(title, description, content, time)</h3>
+
 <p>Creates a new blog post, assigns an incremental ID, and stores it in JSON format.</p>
 
 <h3>delete_post(id)</h3>
+
 <p>Removes a post matching the given ID and updates the JSON file.</p>
 
 <h3>update_post(id, title=None, description=None, content=None)</h3>
+
 <p>Updates only the provided fields of a post while preserving existing values.</p>
 
 ---
@@ -152,27 +163,35 @@ Creates a new admin user and stores the credentials securely inside <code>admin.
 <h2>🌐 Flask Application Logic (app.py)</h2>
 
 <h3>home()</h3>
+
 <p>Displays all blog posts on the homepage.</p>
 
 <h3>view_post(_id)</h3>
+
 <p>Displays a single blog post. Should ideally return a 404 if the post does not exist.</p>
 
 <h3>admin()</h3>
+
 <p>Handles admin login and session creation.</p>
 
 <h3>logout()</h3>
+
 <p>Clears the session and logs out the admin user.</p>
 
 <h3>add_post()</h3>
+
 <p>Creates a new blog post from form input and stores it via helper functions.</p>
 
 <h3>delete_posts(_id)</h3>
+
 <p>Deletes a blog post by ID and redirects to the dashboard.</p>
 
 <h3>edit_posts(_id)</h3>
+
 <p>Allows editing of an existing blog post.</p>
 
 <h3>dashboard()</h3>
+
 <p>Displays all posts in the admin control panel.</p>
 
 ---
