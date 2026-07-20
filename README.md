@@ -1,4 +1,4 @@
-# 🧠 ForgeBlog CMS: Secure Flask-Based JSON Blog System
+# 🧠 Secure Flask-Based JSON Blog System
 
 <p align="center">
   <b>A lightweight, secure, file-based blog CMS built using Flask and Python.</b><br>
