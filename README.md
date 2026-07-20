@@ -244,6 +244,7 @@ The <code>.env</code> file is included in this project to store the Flask secret
 </p>
 
 ---
+
 ## 📄 Licence
 
 <p>
